@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://fonts/arial.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+use_filter = true
+font_data = SubResource( 1 )
+
+[node name="NumberCell" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -904.0
+margin_bottom = -480.0
+rect_min_size = Vector2( 120, 120 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 120.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 120, 120 )
+color = Color( 0.929412, 0.827451, 0.517647, 1 )
+
+[node name="Label" type="Label" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0.698039, 0.596078, 0.290196, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "2"
+align = 1
+valign = 1
