@@ -1,6 +1,7 @@
 extends Control
 
 const MAX_CELLS = 16
+const WIN_NUMBER = 2048
 var cells
 var rows
 var cols
