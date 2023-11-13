@@ -38,14 +38,13 @@ func generate_number_cell():
 		 i = rng.randi_range(0,cells.size() - 1)
 	cells[i].add_child(number_cell)
 	number_cell.get_child(0).color = Color.red
-	yield(get_tree().create_timer(1),"timeout")
+	yield(get_tree().create_timer(0.5),"timeout")
 	number_cell.get_child(0).color = color
 	opened_numbers +=1
 	print(opened_numbers)
 	
 func move_numbers():
 	if Input.is_action_just_pressed("ui_left"):
-		print('work')
 		for row in rows:
 			for i in range(row.size()):
 				if i == 0:
@@ -64,6 +63,7 @@ func move_numbers():
 							var number = int(labelOne.text) * 2
 							labelOne.text = str(number)
 							var child = row[i-count].get_child(0)
+							Events.emit_signal("change_color",child.get_child(0))
 							var child2 = row[i-count - 1].get_child(0)
 							row[i-count].remove_child(child)
 							row[i-1 - count].remove_child(child2)
@@ -75,7 +75,6 @@ func move_numbers():
 			generate_number_cell()
 			is_move = false		
 	elif Input.is_action_just_pressed("ui_right"):
-		print('work')
 		for row in rows:
 			var temp_row = []
 			for i in range(row.size() - 1,-1,-1):
@@ -97,6 +96,7 @@ func move_numbers():
 							var number = int(labelOne.text) * 2
 							labelOne.text = str(number)
 							var child = temp_row[i-count].get_child(0)
+							Events.emit_signal("change_color",child.get_child(0))
 							var child2 = temp_row[i-count - 1].get_child(0)
 							temp_row[i-count].remove_child(child)
 							temp_row[i-1 - count].remove_child(child2)
@@ -108,7 +108,6 @@ func move_numbers():
 			generate_number_cell()
 			is_move = false	
 	elif Input.is_action_just_pressed("ui_up"):
-		print('work')
 		for col in cols:
 			for i in range(col.size()):
 				if i == 0:
@@ -127,6 +126,7 @@ func move_numbers():
 							var number = int(labelOne.text) * 2
 							labelOne.text = str(number)
 							var child = col[i-count].get_child(0)
+							Events.emit_signal("change_color",child.get_child(0))
 							var child2 = col[i-count - 1].get_child(0)
 							col[i-count].remove_child(child)
 							col[i-1 - count].remove_child(child2)
@@ -138,7 +138,6 @@ func move_numbers():
 			generate_number_cell()
 			is_move = false					
 	elif Input.is_action_just_pressed("ui_down"):
-		print('work')
 		for col in cols:
 			var temp_col = []
 			for i in range(col.size() - 1,-1,-1):
@@ -160,6 +159,7 @@ func move_numbers():
 							var number = int(labelOne.text) * 2
 							labelOne.text = str(number)
 							var child = temp_col[i-count].get_child(0)
+							Events.emit_signal("change_color",child.get_child(0))
 							var child2 = temp_col[i-count - 1].get_child(0)
 							temp_col[i-count].remove_child(child)
 							temp_col[i-1 - count].remove_child(child2)
@@ -177,3 +177,7 @@ func _process(delta):
 	
 	
 
+
+
+func _on_Button_pressed():
+	get_tree().reload_current_scene() # Replace with function body.

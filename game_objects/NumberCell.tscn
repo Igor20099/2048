@@ -12,15 +12,26 @@ font_data = SubResource( 1 )
 script/source = "extends Label
 
 
+
 func _ready():
 	randomize()
-	
+	Events.connect(\"change_color\",self,'change_color')
 	var randomNumber = randf() 
 
 	if randomNumber < 0.9:
 		text = str(2)
 	else:
 		text = str(4) 
+		
+func change_color(color_rect):
+	var text = color_rect.get_child(0).text 
+	if int(text) == 8	or int(text) == 16:
+		color_rect.color = Color8(245,149,99,255)
+	elif int(text) == 32:
+		color_rect.color = Color8(246,122,93,255)
+	elif int(text) == 64:
+		color_rect.color = Color8(246,94,59,255)
+		
 "
 
 [node name="NumberCell" type="Control"]
@@ -39,7 +50,7 @@ color = Color( 0.929412, 0.827451, 0.517647, 1 )
 [node name="Label" type="Label" parent="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_colors/font_color = Color( 0.698039, 0.596078, 0.290196, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "2"
 align = 1
