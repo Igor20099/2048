@@ -1,4 +1,5 @@
 # Игра 2048
+![2048](https://github.com/Igor20099/2048/blob/main/Screenshot_3.png)
 
 ## Game Engine: Godot 3.5.3 stable
 Классическая игра 2048 сделанная на движке Godot
